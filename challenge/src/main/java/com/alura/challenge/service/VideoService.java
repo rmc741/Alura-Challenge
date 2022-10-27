@@ -1,5 +1,6 @@
 package com.alura.challenge.service;
 
+import com.alura.challenge.dto.VideoDTO;
 import com.alura.challenge.entity.Video;
 import com.alura.challenge.exception.ObjectNotFoundException;
 import com.alura.challenge.repository.VideoRepository;
@@ -27,8 +28,8 @@ public class VideoService {
         return videoOpt.orElseThrow(() -> new ObjectNotFoundException("Video não encontrado pelo id:" + id));
     }
 
-    public Video saveVideo(Video video){
-        Video videoSave = videoRepository.save(video);
+    public Video saveVideo(VideoDTO videoDTO){
+        Video videoSave = videoRepository.save(new Video(videoDTO.getTitle(), videoDTO.getDescription() , videoDTO.getUrl()));
 
 
         return videoSave;
@@ -40,12 +41,12 @@ public class VideoService {
 
     }
 
-    public Video editVideo(Video video, Long id){
+    public Video editVideo(VideoDTO videoDTO, Long id){
         Video videoEdit = getVideoById(id);
 
-        videoEdit.setTitle(video.getTitle());
-        videoEdit.setDescription(video.getDescription());
-        videoEdit.setUrl(video.getUrl());
+        videoEdit.setTitle(videoDTO.getTitle());
+        videoEdit.setDescription(videoDTO.getDescription());
+        videoEdit.setUrl(videoDTO.getUrl());
 
         return videoRepository.save(videoEdit);
     }
