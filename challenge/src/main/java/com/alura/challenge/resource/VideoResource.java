@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,14 +36,14 @@ public class VideoResource {
     }
 
     @PostMapping
-    public ResponseEntity<Video> creatVideo(@RequestBody Video video){
+    public ResponseEntity<Video> creatVideo(@RequestBody @Valid Video video){
         Video postvideo = videoService.saveVideo(video);
 
         return new ResponseEntity<Video>(HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Video> editVideo(@RequestBody Video video,@PathVariable Long id){
+    public ResponseEntity<Video> editVideo(@RequestBody @Valid Video video, @PathVariable Long id){
         Video videoEdit = videoService.editVideo(video, id);
 
         return new ResponseEntity<Video>(HttpStatus.OK);
