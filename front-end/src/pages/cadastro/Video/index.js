@@ -11,8 +11,7 @@ function CadastroVideo() {
   const { handleChange, values } = useForm({
     titulo: 'Video padrão',
     description: 'Descrição',
-    url: 'https://www.youtube.com/watch?v=jOAU81jdi-c',
-    categoria: 'Front End',
+    url: 'https://www.youtube.com/watch?v=jOAU81jdi-c'
   });
 
   return (
