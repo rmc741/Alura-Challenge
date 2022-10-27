@@ -10,6 +10,7 @@ function CadastroVideo() {
   const history = useHistory();
   const { handleChange, values } = useForm({
     titulo: 'Video padrão',
+    description: 'Descrição',
     url: 'https://www.youtube.com/watch?v=jOAU81jdi-c',
     categoria: 'Front End',
   });
@@ -22,7 +23,8 @@ function CadastroVideo() {
         event.preventDefault();
 
         videosRepository.create({
-          titulo: values.titulo,
+          title: values.titulo,
+          description: values.descricao,
           url: values.url,
         })
           .then(() => {
@@ -34,6 +36,13 @@ function CadastroVideo() {
           label="Título do Vídeo"
           name="titulo"
           value={values.titulo}
+          onChange={handleChange}
+        />
+
+        <FormField
+          label="Descricao"
+          name="descricao"
+          value={values.descricao}
           onChange={handleChange}
         />
 

@@ -1,5 +1,6 @@
 package com.alura.challenge.entity;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,8 +14,11 @@ public class Video {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String title;
+    @NotNull
     private String description;
+    @NotNull
     private String url;
 
     public Video() {
