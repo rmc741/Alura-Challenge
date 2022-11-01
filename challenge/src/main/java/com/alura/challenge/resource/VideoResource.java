@@ -2,24 +2,20 @@ package com.alura.challenge.resource;
 
 import com.alura.challenge.dto.VideoDTO;
 import com.alura.challenge.entity.Video;
-import com.alura.challenge.exception.ObjectNotFoundException;
-import com.alura.challenge.exception.apiError.ApiError;
 import com.alura.challenge.service.VideoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.Instant;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "videos")
 public class VideoResource {
 
-    private VideoService videoService;
+    private final VideoService videoService;
 
     public VideoResource(VideoService videoService) {
         this.videoService = videoService;
@@ -28,7 +24,7 @@ public class VideoResource {
 
     @GetMapping
     public ResponseEntity<List<VideoDTO>> getAllVideos(){
-        List<VideoDTO> videoList = videoService.getAllVideos().stream().map(obj -> new VideoDTO(obj)).collect(Collectors.toList());
+        List<VideoDTO> videoList = videoService.getAllVideos().stream().map(VideoDTO::new).collect(Collectors.toList());
 
         return new ResponseEntity<List<VideoDTO>>(videoList , HttpStatus.OK);
     }

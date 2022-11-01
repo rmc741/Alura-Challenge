@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class VideoService {
 
-    private VideoRepository videoRepository;
+    private final VideoRepository videoRepository;
 
     public VideoService(VideoRepository videoRepository) {
         this.videoRepository = videoRepository;
@@ -29,10 +29,7 @@ public class VideoService {
     }
 
     public Video saveVideo(VideoDTO videoDTO){
-        Video videoSave = videoRepository.save(new Video(videoDTO.getTitle(), videoDTO.getDescription() , videoDTO.getUrl()));
-
-
-        return videoSave;
+        return videoRepository.save(new Video(videoDTO.getTitle(), videoDTO.getDescription() , videoDTO.getUrl()));
     }
 
     public void deleteVideo(Long id){
