@@ -3,12 +3,14 @@ package com.alura.challenge.resource;
 import com.alura.challenge.dto.VideoDTO;
 import com.alura.challenge.entity.Video;
 import com.alura.challenge.exception.ObjectNotFoundException;
+import com.alura.challenge.exception.apiError.ApiError;
 import com.alura.challenge.service.VideoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
