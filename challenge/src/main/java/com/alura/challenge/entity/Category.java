@@ -1,38 +1,38 @@
 package com.alura.challenge.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
+@Entity
 public class Category {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String titulo;
+    private String title;
     private String color;
-
-    private List<Video> videosList;
 
     public Category() {
     }
 
-    public Category(String titulo, String color, List<Video> videosList) {
-        this.titulo = titulo;
+    public Category(String title, String color) {
+        this.title = title;
         this.color = color;
-        this.videosList = videosList;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getTitle() {
+        return title;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTitle(String titulo) {
+        this.title = titulo;
     }
 
     public String getColor() {
@@ -41,13 +41,5 @@ public class Category {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    public List<Video> getVideosList() {
-        return videosList;
-    }
-
-    public void setVideosList(List<Video> videosList) {
-        this.videosList = videosList;
     }
 }
