@@ -23,4 +23,22 @@ public class CategoryService {
     public Category getCategoryById(Long id){
         return categoryRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Categoria não encontrada pelo id:" + id));
     }
+
+    public Category createCategory(Category category){
+        return categoryRepository.save(new Category(category.getTitle(), category.getColor()));
+    }
+
+    public void deleteCategory(Long id){
+        Category category = getCategoryById(id);
+        categoryRepository.delete(category);
+    }
+
+    public Category editCategory(Category category ,Long id){
+        Category editeCategory = getCategoryById(id);
+
+        editeCategory.setTitle(category.getTitle());
+        editeCategory.setColor(category.getColor());
+
+        return categoryRepository.save(editeCategory);
+    }
 }
