@@ -1,9 +1,6 @@
 package com.alura.challenge.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -23,12 +20,22 @@ public class Category {
     @NotNull(message = "The Category color cannot be null")
     private String color;
 
+    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "videoId")
+    private List<Video> videos;
+
     public Category() {
     }
 
     public Category(String title, String color) {
         this.title = title;
         this.color = color;
+    }
+
+    public Category(String title, String color, List<Video> videos) {
+        this.title = title;
+        this.color = color;
+        this.videos = videos;
     }
 
     public Long getId() {
@@ -49,5 +56,13 @@ public class Category {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public List<Video> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<Video> videos) {
+        this.videos = videos;
     }
 }

@@ -1,11 +1,9 @@
 package com.alura.challenge.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Video {
@@ -23,6 +21,10 @@ public class Video {
     @NotNull(message = "The video url cannot be null")
     private String url;
 
+    @ManyToMany(mappedBy = "videos")
+    @JoinColumn(referencedColumnName = "categoryId")
+    private List<Category> categories;
+
     public Video() {
     }
 
@@ -30,6 +32,13 @@ public class Video {
         this.title = title;
         this.description = description;
         this.url = url;
+    }
+
+    public Video(String title, String description, String url, List<Category> categories) {
+        this.title = title;
+        this.description = description;
+        this.url = url;
+        this.categories = categories;
     }
 
     public Long getId() {
@@ -58,5 +67,13 @@ public class Video {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 }
