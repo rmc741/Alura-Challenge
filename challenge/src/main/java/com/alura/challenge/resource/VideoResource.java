@@ -22,10 +22,16 @@ public class VideoResource {
     }
 
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<VideoDTO>> getAllVideos(){
         List<VideoDTO> videoList = videoService.getAllVideos().stream().map(VideoDTO::new).collect(Collectors.toList());
 
+        return new ResponseEntity<List<VideoDTO>>(videoList , HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<VideoDTO>> getVideoByTitle(@RequestParam(required = false) String title){
+        List<VideoDTO> videoList = videoService.getVideoByTitle(title).stream().map(VideoDTO::new).collect(Collectors.toList());
         return new ResponseEntity<List<VideoDTO>>(videoList , HttpStatus.OK);
     }
 

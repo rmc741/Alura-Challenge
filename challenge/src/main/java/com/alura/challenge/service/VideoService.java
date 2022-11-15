@@ -28,6 +28,10 @@ public class VideoService {
         return videoOpt.orElseThrow(() -> new ObjectNotFoundException("Video não encontrado pelo id:" + id));
     }
 
+    public List<Video> getVideoByTitle(String title){
+        return videoRepository.findByTitleContaining(title);
+    }
+
     public Video saveVideo(VideoDTO videoDTO){
         return videoRepository.save(new Video(videoDTO.getTitle(), videoDTO.getDescription() , videoDTO.getUrl()));
     }

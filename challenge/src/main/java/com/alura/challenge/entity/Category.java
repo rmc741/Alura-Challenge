@@ -20,8 +20,7 @@ public class Category {
     @NotNull(message = "The Category color cannot be null")
     private String color;
 
-    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "videoId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category", fetch = FetchType.LAZY)
     private List<Video> videos;
 
     public Category() {

@@ -21,10 +21,8 @@ public class Video {
     @NotNull(message = "The video url cannot be null")
     private String url;
 
-    @ManyToMany(mappedBy = "videos")
-    @JoinColumn(referencedColumnName = "categoryId")
-    private List<Category> categories;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
     public Video() {
     }
 
@@ -34,11 +32,11 @@ public class Video {
         this.url = url;
     }
 
-    public Video(String title, String description, String url, List<Category> categories) {
+    public Video(String title, String description, String url, Category category) {
         this.title = title;
         this.description = description;
         this.url = url;
-        this.categories = categories;
+        this.category = category;
     }
 
     public Long getId() {
@@ -69,11 +67,11 @@ public class Video {
         this.url = url;
     }
 
-    public List<Category> getCategories() {
-        return categories;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
