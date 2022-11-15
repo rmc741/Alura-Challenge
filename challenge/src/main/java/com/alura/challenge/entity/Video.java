@@ -33,6 +33,7 @@ public class Video {
     }
 
     public Video(String title, String description, String url, Category category) {
+        super();
         this.title = title;
         this.description = description;
         this.url = url;

@@ -29,7 +29,7 @@ public class VideoService {
     }
 
     public List<Video> getVideoByTitle(String title){
-        return videoRepository.findByTitleContaining(title);
+        return videoRepository.findByTitleIgnoreCaseContaining(title);
     }
 
     public Video saveVideo(VideoDTO videoDTO){
